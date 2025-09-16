@@ -2,7 +2,7 @@
 import { useForm } from 'react-hook-form'
 import Link from 'next/link'
 import React, { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import axios from 'axios'
 import { signIn } from 'next-auth/react'
 import { sign } from 'crypto'
@@ -14,6 +14,7 @@ export default function Loginpage() {
   const [errorMessage, setErrorMessage] = useState(null)
   const {getCartDetails} =useCart()
   const {getWishlistDetails} =useWishlist()
+  const searchParams = useSearchParams()
   const router = useRouter();
   interface inputs {
     
@@ -29,9 +30,10 @@ export default function Loginpage() {
   async function  onSubmit(values: inputs) {
     console.log(values , "from login");
     try {
-      const response = await signIn("credentials" , {redirect:false , email:values.email, password:values.password })
+      const callbackUrl = searchParams.get("callbackUrl") ?? "/";
+      const response = await signIn("credentials" , {redirect:false , email:values.email, password:values.password , callbackUrl })
       if (response?.ok) {
-        router.push("/")
+        window.location.assign(response.url ?? callbackUrl )
         await getCartDetails()
         await getWishlistDetails()
         toast.success('Successfully LogIn!')
