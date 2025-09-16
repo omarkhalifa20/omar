@@ -41,7 +41,7 @@ export default function TableWishlist() {
     
   return (
     <>
-<Table className='text-center'>
+<Table className='text-center hidden md:inline-table'>
   <TableCaption>A list of your recent invoices.</TableCaption>
   <TableHeader className='bg-[#13c0e3a2] '>
     <TableRow  >
@@ -77,6 +77,35 @@ export default function TableWishlist() {
   </TableBody>
  
 </Table>
+
+<div className='md:hidden pb-7 flex flex-col gap-3'> 
+{wishlistDetails?.map((item)=>
+<div key={item?._id} className='bg-gray-50 border rounded-lg flex justify-between border-[#13c0e3] p-2'>
+<div className='flex items-center justify-center'>
+  <button onClick={()=>handleRemoveprod(item?._id)}  className='pe-2 cursor-pointer'><CircleX className='text-[#13c0e3] ' /></button>
+        <div  className='relative w-[60px] h-[60px] '>
+         <Image  priority loading='eager' sizes='(max-width:768px) 100vw , (max-width:1200px) 50vw , 25vw' src={item?.imageCover} fill alt='img' className='object-cover rounded-[5%]' />
+        </div></div>
+        <div className='text-center relative flex   items-center flex-col w-[75%]'>
+          <p className='bg-[#13c0e3] absolute top-[-8px]  px-5  rounded-b-xl'>{item?.title.split(" ").slice(0,2).join(" ")}</p>
+          <div className='pt-6 pb-2 text-[16px] flex-col flex items-center gap-2 w-[75%] '>
+            <div className='flex  justify-around items-center'>
+              <p className=' font-bold'>Price</p>
+            <p className='text-[#13c0e3]'>{item?.price}</p>
+            </div>
+            <div className='flex justify-end'><button onClick={()=>handleAddToCart(item?._id)} className='bg-[#13bfe3] px-2 cursor-pointer duration-400 border hover:border flex items-center  hover:text-[#13bfe3]  hover:border-[#13bfe3] hover:bg-transparent  text-white  rounded-3xl text-[12px]  Asimovian'><ShoppingBag className='me-2 w-5' /> Add to Cart</button></div>
+            <Link href={`/products/${item?._id}`} className='bg-[#13bfe3] px-5 cursor-pointer duration-400 border hover:border flex items-center  hover:text-[#13bfe3]  hover:border-[#13bfe3] hover:bg-transparent  text-white  rounded-3xl text-[12px]  Asimovian'><Eye className='me-2 w-5'  /> Details</Link>
+        
+          </div>
+        </div>
+        
+        
+</div>
+
+)}
+
+
+</div>
     </>
   )
 }

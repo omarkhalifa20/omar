@@ -83,16 +83,16 @@ export default function Navbarmain() {
   
   <NavigationMenuList className='flex items-center gap-2'>
     <NavigationMenuItem className='relative   p-1'>
-        <Link href="/cart" className=' cursor-pointer '><ShoppingCart className='w-[20px]'  /></Link>
-        <Badge className='bg-[#13bfe3] absolute text-[9px] end-[-10px] top-[-4px] rounded-full  md:end-[-11px] md:top-[-8px]' variant="default">{cartDetails?.products?.length ? cartDetails?.products?.length : 0 }</Badge>
+        <Link href="/cart" className=' cursor-pointer '><ShoppingCart className='w-[20px] md:w-[32px]'  /></Link>
+        <Badge className='bg-[#13bfe3] absolute text-[9px] md:text-[12px] end-[-10px] top-[-4px] rounded-full  md:end-[-11px] md:top-[-8px]' variant="default">{cartDetails?.products?.length ? cartDetails?.products?.length : 0 }</Badge>
     </NavigationMenuItem>
     <NavigationMenuItem className='relative  p-1 '>
-       <Link href='/wishlist' className='cursor-pointer '><Heart className='w-[20px]' /></Link>
-       <Badge className='bg-[#13bfe3] text-[9px] absolute rounded-full end-[-10px] top-[-4px]  z-3 md:end-[-11px] md:top-[-8px]' variant="default">{wishlistDetails?.length ? wishlistDetails?.length : 0 }</Badge>
+       <Link href='/wishlist' className='cursor-pointer '><Heart className='w-[20px] md:w-[32px]' /></Link>
+       <Badge className='bg-[#13bfe3] text-[9px] md:text-[12px] absolute rounded-full end-[-10px] top-[-4px]  z-3 md:end-[-11px] md:top-[-8px]' variant="default">{wishlistDetails?.length ? wishlistDetails?.length : 0 }</Badge>
     </NavigationMenuItem>
 
     <Popover>
-  <PopoverTrigger className=' cursor-pointer hover:bg-gray-200 p-1 rounded-md'><UserRound className='w-[20px]' /></PopoverTrigger>
+  <PopoverTrigger className=' cursor-pointer hover:bg-gray-200 p-1 rounded-md'><UserRound className='w-[20px] md:w-[32px]' /></PopoverTrigger>
   <PopoverContent className='p-2 w-52 md:w-57 mt-1'> {session.data?
         <>
         <div className='flex flex-col z-50 mb-2 p-2 rounded-lg border border-[#13bfe3] bg-[#13c0e341] items-center'>
