@@ -83,7 +83,7 @@ export default function TableCart() {
 </Table>
 <div className='md:hidden pb-7 flex flex-col gap-3'> 
 {cartDetails?.products.map((item)=>
-<div key={item?._id} className='bg-gray-50 border rounded-lg flex justify-between border-[#13c0e3] p-2'>
+<div key={item?._id} className='bg-gray-100 border rounded-lg flex justify-between border-[#13c0e3] p-2'>
 <div className='flex items-center justify-center'>
   <button onClick={()=>handleRemoveprod(item?.product?._id)}  className='pe-2 cursor-pointer'><CircleX className='text-[#13c0e3] ' /></button>
         <div  className='relative w-[60px] h-[60px] '>
@@ -91,7 +91,7 @@ export default function TableCart() {
         </div></div>
         <div className='text-center relative flex  items-center flex-col w-[75%]'>
           <p className='bg-[#13c0e3] absolute top-[-8px]  px-5  rounded-b-xl'>{item?.product?.title.split(" ").slice(0,2).join(" ")}</p>
-          <div className='pt-6 pb-6 text-[14px] flex justify-between w-[75%] '>
+          <div className='pt-8 pb-8 text-[14px] flex justify-between w-[75%] '>
             <div>
               <p className=' font-bold'>Price</p>
             <p className='text-[#13c0e3]'>{item?.price}</p>
@@ -114,7 +114,7 @@ export default function TableCart() {
 
 )}
 
-<div className='bg-gray-50 border rounded-lg flex flex-col justify-between border-[#13c0e3] py-4 px-2' >
+<div className='bg-gray-100 border rounded-lg flex flex-col justify-between border-[#13c0e3] py-4 px-2' >
   <div className='flex justify-around items-center mb-2 '>
     <p className='Signika font-bold text-[16px] '>Total Price</p>
   <p className=' text-[16px] font-bold Signika'>{cartDetails?.totalCartPrice}</p>

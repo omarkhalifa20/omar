@@ -80,7 +80,7 @@ export default function TableWishlist() {
 
 <div className='md:hidden pb-7 flex flex-col gap-3'> 
 {wishlistDetails?.map((item)=>
-<div key={item?._id} className='bg-gray-50 border rounded-lg flex justify-between border-[#13c0e3] p-2'>
+<div key={item?._id} className='bg-gray-100 border rounded-lg flex justify-between border-[#13c0e3] p-2'>
 <div className='flex items-center justify-center'>
   <button onClick={()=>handleRemoveprod(item?._id)}  className='pe-2 cursor-pointer'><CircleX className='text-[#13c0e3] ' /></button>
         <div  className='relative w-[60px] h-[60px] '>
