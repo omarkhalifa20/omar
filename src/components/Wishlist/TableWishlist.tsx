@@ -89,12 +89,12 @@ export default function TableWishlist() {
         <div className='text-center relative flex   items-center flex-col w-[75%]'>
           <p className='bg-[#13c0e3] absolute top-[-8px]  px-5  rounded-b-xl'>{item?.title.split(" ").slice(0,2).join(" ")}</p>
           <div className='pt-6 pb-2 text-[16px] flex-col flex items-center gap-2 w-[75%] '>
-            <div className='flex  justify-around items-center'>
-              <p className=' font-bold'>Price</p>
+            <div className='flex gap-2 justify-around items-center'>
+              <p className=' font-bold'>Price:</p>
             <p className='text-[#13c0e3]'>{item?.price}</p>
             </div>
-            <div className='flex justify-end'><button onClick={()=>handleAddToCart(item?._id)} className='bg-[#13bfe3] px-2 cursor-pointer duration-400 border hover:border flex items-center  hover:text-[#13bfe3]  hover:border-[#13bfe3] hover:bg-transparent  text-white  rounded-3xl text-[12px]  Asimovian'><ShoppingBag className='me-2 w-5' /> Add to Cart</button></div>
-            <Link href={`/products/${item?._id}`} className='bg-[#13bfe3] px-5 cursor-pointer duration-400 border hover:border flex items-center  hover:text-[#13bfe3]  hover:border-[#13bfe3] hover:bg-transparent  text-white  rounded-3xl text-[12px]  Asimovian'><Eye className='me-2 w-5'  /> Details</Link>
+            <div className='flex justify-end'><button onClick={()=>handleAddToCart(item?._id)} className='bg-[#13bfe3] py-1 px-2 cursor-pointer duration-400 border hover:border flex items-center  hover:text-[#13bfe3]  hover:border-[#13bfe3] hover:bg-transparent  text-white  rounded-3xl text-[12px]  Asimovian'><ShoppingBag className='me-2 w-5' /> Add to Cart</button></div>
+            <Link href={`/products/${item?._id}`} className='bg-[#13bfe3] py-1 px-5 cursor-pointer duration-400 border hover:border flex items-center  hover:text-[#13bfe3]  hover:border-[#13bfe3] hover:bg-transparent  text-white  rounded-3xl text-[12px]  Asimovian'><Eye className='me-2 w-5'  /> Details</Link>
         
           </div>
         </div>

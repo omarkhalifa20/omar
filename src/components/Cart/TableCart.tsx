@@ -98,10 +98,10 @@ export default function TableCart() {
             </div>
             <div>
               <p className=' font-bold'>Quantity</p>
-              <div className='flex justify-center items-center bg-[#13c0e3] rounded-md    gap-2'>
-        <button onClick={()=>handleupdatecount(item?.product?._id,item?.count+1)} className=' rounded-s-md cursor-pointer   pe-1  duration-150 border-e border-black   text-[14px]'>+</button>
-        <p className='text-[14px] Signika'>{item?.count}</p>
-        <button onClick={()=>handleupdatecount(item?.product?._id,item?.count-1)} className=' rounded-e-md cursor-pointer   ps-1 border-s  duration-150 border-black  text-[14px]'>-</button>
+              <div className='flex justify-center items-center  bg-[#13c0e3] rounded-md px-3    gap-2'>
+        <button onClick={()=>handleupdatecount(item?.product?._id,item?.count+1)} className=' rounded-s-md cursor-pointer py-1   pe-3  duration-150 border-e border-black   text-[14px]'>+</button>
+        <p className='text-[14px] px-1 Signika'>{item?.count}</p>
+        <button onClick={()=>handleupdatecount(item?.product?._id,item?.count-1)} className=' rounded-e-md cursor-pointer py-1   ps-3 border-s  duration-150 border-black  text-[14px]'>-</button>
         </div>
             </div>
             <p className='bg-[#13c0e3] absolute left-[50%] translate-x-[-50%] bottom-[-8px]  px-4  rounded-t-lg'>Total : {item?.price*item?.count}</p>
