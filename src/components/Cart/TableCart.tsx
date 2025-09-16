@@ -114,13 +114,13 @@ export default function TableCart() {
 
 )}
 
-<div className='bg-[#13c0e392] border rounded-lg flex flex-col justify-between border-gray-400 p-2' >
+<div className='bg-gray-50 border rounded-lg flex flex-col justify-between border-[#13c0e3] py-4 px-2' >
   <div className='flex justify-around items-center mb-2 '>
     <p className='Signika font-bold text-[16px] '>Total Price</p>
   <p className=' text-[16px] font-bold Signika'>{cartDetails?.totalCartPrice}</p>
   </div>
   
-  <Link href="/checkout" className='px-3 py-2 font-bold me-3 text-center text-[16px] rounded-2xl bg-[#129fbb]'>CheckOut</Link>
+  <Link href="/checkout" className='px-3 py-2 font-bold me-3 text-center text-[16px] rounded-2xl bg-[#13c0e3] border '>CheckOut</Link>
 
 
 </div>
