@@ -18,7 +18,7 @@ export default function Miansec() {
       </div>
       <div className=" main-sec2 overflow-y-hidden flex md:hidden justify-center items-center bg-cover bg-center h-[70vh] w-full ">
         <motion.img
-          className="h-[37vh] sm:h-[65vh] "
+          className="h-[32vh] sm:h-[65vh] "
           src={mobcont.src}
           alt=""
           initial={{ opacity: 0, scale: 0.8  }}
