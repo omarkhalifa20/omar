@@ -8,7 +8,7 @@ export interface shippingAddressTypes {
     city: string
 }
 
-async function CheckoutPayment(CartId:string , shippingAddress : {shippingAddress:shippingAddressTypes}) {
+async function CheckoutPayment(CartId:string , shippingAddress:shippingAddressTypes) {
     const token = await getusertoken()
     try {
        const response = await axios.post(`https://ecommerce.routemisr.com/api/v1/orders/${CartId}` ,{shippingAddress} ,{
@@ -35,7 +35,7 @@ async function CheckoutPayment(CartId:string , shippingAddress : {shippingAddres
     }
 }
 
-async function CheckoutOnlinePayment(CartId:string , shippingAddress : {shippingAddress:shippingAddressTypes}) {
+async function CheckoutOnlinePayment(CartId:string , shippingAddress:shippingAddressTypes) {
     const token = await getusertoken()
     try {
        const response = await axios.post(`https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${CartId}?url=http://localhost:3000` ,{shippingAddress} ,{
@@ -43,7 +43,7 @@ async function CheckoutOnlinePayment(CartId:string , shippingAddress : {shipping
             token: token as string
         }
        }); 
-       console.log(response?.data, "Cash payment");
+       console.log(response?.data, "online payment");
          return {
           data:response?.data,
           status:response?.status,

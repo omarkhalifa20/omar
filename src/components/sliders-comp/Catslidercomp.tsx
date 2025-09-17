@@ -33,7 +33,7 @@ export default function Catslidercomp({category} : {category : Categories[]}) {
         
         
         autoplay={{
-          delay: 60000,
+          delay: 3000,
           disableOnInteraction: false,
         }}
         pagination={{

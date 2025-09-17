@@ -10,8 +10,9 @@ import { useCart } from '../context/CartContext'
 import toast from 'react-hot-toast'
 import { useWishlist } from '../context/WishlistContext'
 
+
 export default function Loginpage() {
-  const [errorMessage, setErrorMessage] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
   const {getCartDetails} =useCart()
   const {getWishlistDetails} =useWishlist()
   const searchParams = useSearchParams()
@@ -29,6 +30,7 @@ export default function Loginpage() {
   } = useForm<inputs>();
   async function  onSubmit(values: inputs) {
     console.log(values , "from login");
+    setIsLoading(true)
     try {
       const callbackUrl = searchParams.get("callbackUrl") ?? "/";
       const response = await signIn("credentials" , {redirect:false , email:values.email, password:values.password , callbackUrl })
@@ -36,14 +38,17 @@ export default function Loginpage() {
         window.location.assign(response.url ?? callbackUrl )
         await getCartDetails()
         await getWishlistDetails()
+        setIsLoading(false)
         toast.success('Successfully LogIn!')
-      }
-      
+      }else{ 
+        
+        toast.error('Invalid email or password!')}
+        setIsLoading(false)
       console.log(response);
-      setErrorMessage(null)
+      
     } catch (error) {
       console.log(error);
-      toast.error('UnSuccessfully LogIn!')
+      
     
   }
  }
@@ -54,7 +59,7 @@ export default function Loginpage() {
           <div className="form-box w-200  ">
             <form onSubmit={handleSubmit(onSubmit)} className="form auth-form">
               <span className="title Asimovian text-[#13bfe3] ">LogIn</span>
-              {errorMessage && <p className="text-red-500 text-[16px]  text-center mb-1">{errorMessage}</p> }
+            
               <span className="subtitle">
                 Join us!.
               </span>
@@ -70,13 +75,21 @@ export default function Loginpage() {
                 <input
                   type="password"
                   className="w-[95%] mb-2 p-2 bg-white rounded border border-[#13bfe3]"
-                  placeholder="Password"
+                  placeholder="Password "
                   {...register("password", { required: 'Password Is Required' })}
                 />
                 {errors.password && <p className="text-red-500 text-[14px] text-start ms-5 mb-1">{errors.password.message}</p>}
                
               </div>
-              <button type="submit">login</button>
+              <button className='flex justify-center' type="submit">   
+                { isLoading ? <div className="loading-wave">
+              <div className="loading-bar" />
+              <div className="loading-bar" />
+               <div className="loading-bar" />
+               <div className="loading-bar" />
+               </div> : "LogIn"}
+              
+  </button>
               
             </form>
             <div className="form-section">

@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 export default function Registerpage() {
+  const [isLoading, setIsLoading] = useState(false)
   const [errorMessage, setErrorMessage] = useState(null)
   const router = useRouter();
   interface inputs {
@@ -21,11 +22,12 @@ export default function Registerpage() {
   } = useForm<inputs>();
   async function  onSubmit(values: inputs) {
     console.log(values);
+    setIsLoading(true)
     try {
       const response = await axios.post("https://ecommerce.routemisr.com/api/v1/auth/signup" , values )
       if (response?.data?.message === "success") {
         router.push("/login")
-        
+        setIsLoading(false)
       }
       setErrorMessage(null)
     } catch (error) {
@@ -65,7 +67,7 @@ export default function Registerpage() {
                 <input
                   type="password"
                   className="w-[95%] mb-2 p-2 bg-white rounded border border-[#13bfe3]"
-                  placeholder="Password"
+                  placeholder="Password  (Example : Test@11111)"
                   {...register("password", { required: 'Password Is Required' })}
                 />
                 {errors.password && <p className="text-red-500 text-[14px] text-start ms-5 mb-1">{errors.password.message}</p>}
@@ -84,7 +86,15 @@ export default function Registerpage() {
                 />
                 {errors.phone && <p className="text-red-500 text-[14px] text-start ms-5 mb-1 ">{errors.phone.message}</p>}
               </div>
-              <button type="submit">Register</button>
+              <button className="bg-[#13bfe3] rounded-xl cursor-pointer text-white  p-2" type="submit">
+              { isLoading ? <div className="loading-wave">
+              <div className="loading-bar" />
+              <div className="loading-bar" />
+               <div className="loading-bar" />
+               <div className="loading-bar" />
+               </div> : "Register"}
+
+              </button>
               
             </form>
             <div className="form-section">

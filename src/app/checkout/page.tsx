@@ -13,6 +13,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 export default function Checkoutpage() {
   const [errorMessage, setErrorMessage] = useState(null)
+  const [isLoading, setisLoading] = useState(false)
   const [paymentMethod, setPaymentMethod] = useState<"cash" | "online" | null>(null)
   const{cartDetails ,setCartDetails , getCartDetails}=useCart();
 
@@ -29,15 +30,16 @@ export default function Checkoutpage() {
     formState: { errors },
   } = useForm<inputs>();
   async function  onSubmit(values: inputs) {
-    
+    setisLoading(true)
     console.log(values);
     if (paymentMethod == "cash") {
       try {
-      const response = await CheckoutPayment(CardId as string ,{ shippingAddress: values })
+      const response = await CheckoutPayment(CardId as string , values )
       console.log(response , "from checkout");
       
       if (response?.data?.status === "success") {
         router.push("/")
+        setisLoading(false)
         setCartDetails(null)
         toast.success('Successfully Payment!')
        await getCartDetails()
@@ -52,11 +54,12 @@ export default function Checkoutpage() {
   }   
     }else if (paymentMethod == "online") {
         try {
-        const response = await CheckoutOnlinePayment(CardId as string ,{ shippingAddress: values })
+        const response = await CheckoutOnlinePayment(CardId as string , values )
         console.log(response , "from online");
         
         if (response?.data?.status === "success") {
         window.location.href = response?.data?.session?.url
+        setisLoading(false)
         }
         setErrorMessage(null)
       } catch (error) {
@@ -108,7 +111,12 @@ export default function Checkoutpage() {
                 />
                 {errors.city && <p className="text-red-500 text-[14px] text-start ms-5 mb-1">{errors.city.message}</p>}
                 
-              <button className="w-100 mt-4 custom-button" type="submit">CheckOut</button>
+              <button className="w-[100%] flex justify-center mt-4 custom-button" type="submit"> { isLoading ? <div className="loading-wave">
+              <div className="loading-bar" />
+              <div className="loading-bar" />
+               <div className="loading-bar" />
+               <div className="loading-bar" />
+               </div> : "CheckOut"}</button>
 
 
              </TabsContent>
@@ -136,7 +144,13 @@ export default function Checkoutpage() {
                 />
                 {errors.city && <p className="text-red-500 text-[14px] text-start ms-5 mb-1">{errors.city.message}</p>}
                 
-              <button className="w-100 mt-4 custom-button" type="submit">CheckOut</button>
+                <button className="w-[100%] flex justify-center mt-4 custom-button" type="submit"> { isLoading ? <div className="loading-wave">
+              <div className="loading-bar" />
+              <div className="loading-bar" />
+               <div className="loading-bar" />
+               <div className="loading-bar" />
+               </div> : "CheckOut"}</button>
+
 
              </TabsContent>
                

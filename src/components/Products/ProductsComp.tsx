@@ -2,7 +2,7 @@
 import { Productsmod } from '@/app/types/product.moudle'
 import { StarRating } from 'react-flexible-star-rating';
 import Image from 'next/image'
-import React from 'react'
+import React, { useRef } from 'react'
 import { Eye, Fullscreen, Heart, ShoppingBag, Warehouse } from 'lucide-react';
 import Link from 'next/link';
 import { useCart } from '@/app/context/CartContext';
@@ -10,8 +10,11 @@ import { AddUsercart } from '@/actions/cart.action';
 import toast from 'react-hot-toast';
 import { AddUserWishlist } from '@/actions/wishlist.action';
 import { useWishlist } from '@/app/context/WishlistContext';
+import { motion, useInView } from "framer-motion"
 
 export default function ProductsComp({products} : {products : Productsmod[]}) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.5 });
 const {getCartDetails} =useCart()
 const {getWishlistDetails} =useWishlist()
 console.log(getWishlistDetails);

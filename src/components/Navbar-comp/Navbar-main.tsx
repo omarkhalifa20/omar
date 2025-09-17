@@ -20,6 +20,7 @@ import {
   } from "@/components/ui/navigation-menu"
   import {
     Sheet,
+    SheetClose,
     SheetContent,
     SheetDescription,
     SheetHeader,
@@ -31,8 +32,18 @@ import { signOut, useSession } from 'next-auth/react'
 import { Badge } from '../ui/badge'
 import { useCart } from '@/app/context/CartContext'
 import { useWishlist } from '@/app/context/WishlistContext'
+import { usePathname } from 'next/navigation'
 
 export default function Navbarmain() {
+  const pathname = usePathname();
+
+  const links = [
+    { href: "/", label: "Home" },
+    { href: "/products", label: "Products" },
+    { href: "/cart", label: "Cart" },
+    { href: "/category", label: "Categories" },
+    { href: "/brands", label: "Brands" },
+  ];
   const session = useSession()
   useEffect(() => {
    if (session?.data?.user) {
@@ -63,21 +74,23 @@ export default function Navbarmain() {
   </NavigationMenuList>
 
   <div className='hidden list-none   md:flex'>
-    <NavigationMenuItem >
-       <Link className='px-3 font-medium Signika' href="/">Home</Link>
-    </NavigationMenuItem>
-    <NavigationMenuItem>
-       <Link className='px-3 font-medium Signika' href="/products">Products</Link>
-    </NavigationMenuItem>
-    <NavigationMenuItem>
-       <Link className='px-3 font-medium Signika' href="/cart">Cart</Link>
-    </NavigationMenuItem>
-    <NavigationMenuItem>
-       <Link className='px-3 font-medium Signika ' href="/category">Categories</Link>
-    </NavigationMenuItem>
-    <NavigationMenuItem>
-       <Link className='px-3 font-medium Signika' href="/brands">Brands</Link>
-    </NavigationMenuItem>
+    
+    {links.map((link) => {
+        const isActive = pathname === link.href;
+        return (
+          <NavigationMenuItem key={link.href} >
+          <Link
+            key={link.href}
+            href={link.href}
+            className={isActive ? "text-[#13bfe3]  px-3 font-medium Signika" : "px-3 font-medium Signika"}
+          >
+            {link.label}
+          </Link>
+          </NavigationMenuItem>
+        );
+      })}
+    
+  
   </div>
  
   
@@ -114,26 +127,28 @@ export default function Navbarmain() {
 
   <div className='flex md:hidden '>
   <Sheet>
-  <SheetTrigger><Menu /></SheetTrigger>
+  <SheetTrigger className=' cursor-pointer '><Menu /></SheetTrigger>
   <SheetContent>
     <SheetHeader>
       <SheetTitle className='text-center mb-5 '>Menu</SheetTitle>
-      <SheetDescription className=' list-none items-center flex flex-col gap-10 text-[#13bfe3]'>
-      <NavigationMenuItem >
-       <Link className='px-25 py-2 rounded-md border border-[#13bfe3] hover:bg-[#13bfe3] hover:text-black duration-300 font-medium Signika' href="/">Home</Link>
-    </NavigationMenuItem>
-    <NavigationMenuItem>
-       <Link className='px-23 py-2 rounded-md border border-[#13bfe3] hover:bg-[#13bfe3] hover:text-black duration-300 font-medium Signika' href="/products">Products</Link>
-    </NavigationMenuItem>
-    <NavigationMenuItem>
-       <Link className='px-27 py-2 rounded-md border border-[#13bfe3] hover:bg-[#13bfe3] hover:text-black duration-300 font-medium Signika' href="/cart">Cart</Link>
-    </NavigationMenuItem>
-    <NavigationMenuItem>
-       <Link className='px-22 py-2 rounded-md border border-[#13bfe3] hover:bg-[#13bfe3] hover:text-black duration-300 font-medium Signika ' href="/category">Categories</Link>
-    </NavigationMenuItem>
-    <NavigationMenuItem>
-       <Link className='px-25 py-2 rounded-md border border-[#13bfe3] hover:bg-[#13bfe3] hover:text-black duration-300 font-medium Signika' href="/brands">Brands</Link>
-    </NavigationMenuItem>
+      <ul className=' list-none items-center flex flex-col gap-10 text-[#13bfe3]'>
+      {links.map((link) => {
+        const isActive = pathname === link.href;
+        return (
+          <NavigationMenuItem key={link.href} className='w-[100%]' >
+            <SheetClose asChild>
+          <Link
+            key={link.href}
+            href={link.href}
+            className={isActive ? "w-[100%] block  text-center py-2 rounded-md border bg-[#13bfe3] border-[#13bfe3] hover:bg-[#13bfe3] text-black hover:text-black duration-300 font-medium Signika" : "   py-2 w-[100%] block  text-center rounded-md border text-black border-[#13bfe3] hover:bg-[#13bfe3] hover:text-black duration-300 font-medium Signika"}
+          >
+            {link.label}
+          </Link>
+          </SheetClose>
+          </NavigationMenuItem>
+        );
+      })}
+      
     <div className='flex gap-4 mt-10'>
     <NavigationMenuItem className='relative   p-1'>
         <Link href="/cart" className=' cursor-pointer '><ShoppingCart  /></Link>
@@ -160,7 +175,7 @@ export default function Navbarmain() {
     </NavigationMenuItem>
 
     </div>
-      </SheetDescription>
+      </ul>
 
     </SheetHeader>
   </SheetContent>

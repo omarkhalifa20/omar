@@ -12,6 +12,8 @@ export default async function Products() {
     <ProductsComp products={response?.data}/>
     </div>
     
+  
+    
     </>
   )
 }

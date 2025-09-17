@@ -14,20 +14,20 @@ export default function Prouductdetcomp({product}: {product: ProductDet}) {
     const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
   return (
     <>
-    <div className='container mx-auto pb-20   w-[90%] '>
-        <div className=' flex border-2 p-4 border-[#13bfe3] rounded-3xl prod-de justify-between items-center'>
-            <div className='w-[49%] '>
+    <div className='container mx-auto pb-20 w-[100%]  md:w-[90%] '>
+        <div className=' flex flex-col  md:flex-row border-2 p-4 border-[#13bfe3] rounded-3xl prod-de justify-between items-center'>
+            <div className='w-[100%] md:w-[49%] '>
             <Swiper 
        
         spaceBetween={19}
        
         thumbs={{ swiper: thumbsSwiper }}
         modules={[FreeMode, Navigation, Thumbs]}
-        className="mySwiper2  "
+        className="md:mySwiper2   "
       >
         {product?.images.map((img: string) => (
           <SwiperSlide key={product?._id}>
-            <div  className='relative w-[100%] h-[400px]    '>
+            <div  className='relative w-[100%] h-[250px] md:h-[400px]    '>
             
                   <Image  priority loading='eager' sizes='(max-width:768px) 100vw , (max-width:1200px) 50vw , 25vw' src={img} fill alt='img' className='object-cover ' />
           </div>
@@ -46,7 +46,7 @@ export default function Prouductdetcomp({product}: {product: ProductDet}) {
       >
         {product?.images.map((img: string) => (
           <SwiperSlide key={product?._id} className=' '>
-            <div className='relative  w-[100px] h-[100px]    '>
+            <div className='relative w-[50px] h-[50px]  md:w-[100px] md:h-[100px]    '>
             
                   <Image  priority loading='eager' sizes='(max-width:768px) 100vw , (max-width:1200px) 50vw , 25vw' src={img} fill alt='img' className='object-cover ' />
           </div>
@@ -56,16 +56,23 @@ export default function Prouductdetcomp({product}: {product: ProductDet}) {
 
       </Swiper>
             </div>
-            <div className='w-[49%] '>
-                <h2 className=' Asimovian text-[#13bfe3] text-[40px] mb-4  uppercase'>{product?.title}</h2>
-                <p className='text-[16px] mb-2 Signika '>{product?.description}</p>
-                <p className='text-[24px] text-[#13bfe3] Signika mb-4 '>{product?.price} EGP</p>
-                <p className='text-[14px] mb-2 Signika '>Category: {product?.category?.name}</p>
+            <div className='md:w-[49%] '>
+                <h2 className=' Asimovian text-[#13bfe3] text-center md:text-start text-[25px] md:text-[40px] mb-4 mt-6 md:mt-0  uppercase'>{product?.title}</h2>
+                <p className='text-[16px] mb-2 Signika text-center  md:text-start  '>{product?.description}</p>
+                <p className='text-[24px] text-center  md:text-start text-[#13bfe3] Signika mb-4 '>{product?.price} EGP</p>
+                <div className='bg-gray-100 md:border-none border border-[#13bfe3] md:bg-transparent md:rounded-none md:p-0 p-2 rounded-lg'>
+                 <p className='text-[14px] mb-2 Signika md:text-start text-center '><span className='hidden md:inline-block  '>Category:</span> {product?.category?.name}</p>
+                <div className='flex    flex-row md:flex-col md:justify-start justify-around  '>
                 <p className='text-[14px] mb-2 Signika '>Quantity: {product?.quantity}</p>
-                <p className='text-[14px] mb-2 Signika '>Brand: {product?.brand?.name}</p>
-                <div className='flex '>
-                <button className='bg-[#13bfe3] duration-400 border hover:border flex hover:text-[#13bfe3] me-4 hover:border-[#13bfe3] hover:bg-transparent  text-white px-6 py-2 rounded-3xl mt-4 Asimovian'><ShoppingBag className='me-2' /> Add to Cart</button>
-                <button className='bg-[#13bfe3] duration-400 border hover:border flex hover:text-[#13bfe3] hover:border-[#13bfe3] hover:bg-transparent  text-white px-6 py-2 rounded-3xl mt-4 Asimovian'><Heart className='me-2' /> Add to WishList</button>
+                <p className='text-[14px] mb-2 Signika '>Brand: {product?.brand?.name}</p> 
+                </div>
+                
+
+                </div>
+                
+                <div className='flex flex-col md:flex-row '>
+                <button className='bg-[#13bfe3] duration-400 border hover:border flex justify-center  hover:text-[#13bfe3] md:me-4 hover:border-[#13bfe3] hover:bg-transparent  text-white px-6 py-2 rounded-3xl mt-4 Asimovian'><ShoppingBag className='me-2' /> Add to Cart</button>
+                <button className='bg-[#13bfe3] duration-400 border hover:border flex justify-center hover:text-[#13bfe3] hover:border-[#13bfe3] hover:bg-transparent  text-white px-6 py-2 rounded-3xl mt-4 Asimovian'><Heart className='me-2' /> Add to WishList</button>
                 </div>
                 </div>
         </div>
