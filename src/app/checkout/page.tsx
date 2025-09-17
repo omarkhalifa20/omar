@@ -58,7 +58,7 @@ export default function Checkoutpage() {
         console.log(response , "from online");
         
         if (response?.data?.status === "success") {
-        window.location.href = "https://omar-wheat.vercel.app/allorders"
+        window.location.href = response?.data?.session?.url
         setisLoading(false)
         }
         setErrorMessage(null)
