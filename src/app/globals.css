@@ -79,6 +79,7 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
   font-family: "Signika", sans-serif;
+  
 }
 
 .dark {
@@ -122,6 +123,10 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+body{
+  height: 100vh;
 }
 
 .main-sec{

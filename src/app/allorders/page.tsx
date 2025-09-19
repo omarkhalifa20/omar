@@ -8,7 +8,13 @@ export default async function allorderpage() {
   
   return (
     <>
+    <div className=' container W-[90%] mx-auto '>
+
+    
     <h2 className='text-center relative pt-[85px] text-head font-medium Asimovian text-[#13bfe3] text-[30px] mb-20  uppercase'>Congratulations!</h2>
+    <div className='min-h-[50.0285vh] md:min-h-[44vh]'>
+
+    
     <div className='flex justify-center items-center  '>
     
 <div className="flip-card ">
@@ -79,6 +85,8 @@ export default async function allorderpage() {
   </div>
 </div>
 
+    </div>
+    </div>
     </div>
     </>
   )

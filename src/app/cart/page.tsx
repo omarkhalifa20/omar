@@ -8,9 +8,12 @@ export default async function cartpage() {
     
   return (
     <>
-    <div className='container mx-auto pt-20  w-[85%] '>
+    <div className='container mx-auto pt-24  w-[85%] '>
     <h2 className='text-center relative text-head font-medium Asimovian text-[#13bfe3] text-[30px] mb-4 uppercase'>Your Cart</h2>
-     <TableCart />
+    <div className='min-h-[28.5vh] md:min-h-[22.7vh]'>
+      <TableCart />
+    </div>
+     
     </div>
     </>
   )
