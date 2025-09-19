@@ -1,5 +1,5 @@
 import { Categories } from '@/app/types/category.moudle'
-import { Eye, Heart } from 'lucide-react'
+import { Eye } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'

@@ -5,7 +5,7 @@ import {
     TableBody,
     TableCaption,
     TableCell,
-    TableFooter,
+   
     TableHead,
     TableHeader,
     TableRow,
@@ -19,22 +19,22 @@ import Link from 'next/link';
 import { Removefromwishlist } from '@/actions/wishlist.action';
 import { AddUsercart } from '@/actions/cart.action';
 import { useCart } from '@/app/context/CartContext';
-import { WishlistInterface } from '@/app/types/wishlist.moudle';
+
 export default function TableWishlist() {
     const {getCartDetails} =useCart()
   const {wishlistDetails , getWishlistDetails } = useWishlist()
-  console.log(wishlistDetails);
+  
    
   async function handleAddToCart(productId : string) {
     const response = await AddUsercart(productId); 
-    console.log(response);
+    
     toast.success('Successfully Added To Cart!')
     await getCartDetails()
   }
 
     async function handleRemoveprod(productId:string ){
       const response = await Removefromwishlist(productId)
-        console.log(response);
+        
         toast.success('Successfully Deleted From Wishlist!')
        await getWishlistDetails()
     }

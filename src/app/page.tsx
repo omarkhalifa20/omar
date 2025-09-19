@@ -9,7 +9,7 @@ import { options } from "./api/auth/[...nextauth]/route";
 export default async function Home() {
  const session = await getServerSession(options)
 
-console.log(session);
+
 
   return (
     <>

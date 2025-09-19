@@ -1,17 +1,14 @@
-
 import { getBrandsdet } from '@/actions/products.action';
 import Brandsdetcomp from '@/components/brands/Brandsdet';
-import Prouductdetcomp from '@/components/Products/Prouductdet';
-import axios from 'axios';
-import React, { use } from 'react'
+import React from 'react'
 
 export default  async function BrandDet({params}: {params : {id:string}}) {
 const {id} = await params;
   
-    console.log(id);
+  
 
     const response = await getBrandsdet(id);
-    console.log(response?.data);
+    
   return (
     <>
     <div className='container mx-auto   w-[85%] '>

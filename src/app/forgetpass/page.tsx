@@ -2,20 +2,18 @@
 import { useForm } from 'react-hook-form'
 import Link from 'next/link'
 import React, { useState } from 'react'
-import { useRouter, useSearchParams } from 'next/navigation'
-import axios from 'axios'
+import { useRouter } from 'next/navigation'
 
-import { useCart } from '../context/CartContext'
+
+
 import toast from 'react-hot-toast'
-import { useWishlist } from '../context/WishlistContext'
+
 import { forgetpass } from '@/actions/forgetpass.action'
 
 
 export default function Forgetpasspage() {
   const [isLoading, setIsLoading] = useState(false)
-  const {getCartDetails} =useCart()
-  const {getWishlistDetails} =useWishlist()
-  const searchParams = useSearchParams()
+ 
   const router = useRouter();
   interface inputs {
     
@@ -33,7 +31,7 @@ export default function Forgetpasspage() {
     setIsLoading(true)
     try {
       const response = await forgetpass(values.email)
-      console.log(response);
+      
       if (response?.data?.statusMsg == "success") {
       toast.success("Code Sent Succesfully !")
       localStorage.setItem("resetEmail", values.email);

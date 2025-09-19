@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 
 import Image from 'next/image';
-import { Heart } from 'lucide-react';
+
 import { Categories } from '@/app/types/category.moudle';
 export default function Catdetcomp({category}: {category: Categories}) {
     

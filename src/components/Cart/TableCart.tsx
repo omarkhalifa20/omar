@@ -11,7 +11,7 @@ import {
     TableRow,
   } from "@/components/ui/table"
 import Image from 'next/image'
-import { getUsercart, Removefromcart, Updatecartquantity } from '@/actions/cart.action';
+import {  Removefromcart, Updatecartquantity } from '@/actions/cart.action';
 import { useCart } from '@/app/context/CartContext';
 import { CircleX } from 'lucide-react';
 import toast from 'react-hot-toast';
@@ -19,16 +19,16 @@ import Link from 'next/link';
 export default function TableCart() {
     
     const {cartDetails , getCartDetails } = useCart()
-  console.log(cartDetails?.products);
+  
   
     async function handleupdatecount(productId:string , count:number){
       const response = await Updatecartquantity(productId , count)
-        console.log(response);
+        
        await getCartDetails()
     }
     async function handleRemoveprod(productId:string ){
       const response = await Removefromcart(productId)
-        console.log(response);
+       
         toast.success('Successfully Deleted From Cart!')
        await getCartDetails()
     }

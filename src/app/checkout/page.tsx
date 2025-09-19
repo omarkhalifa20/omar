@@ -1,7 +1,7 @@
 "use client";
 
 import axios from "axios";
-import Link from "next/link";
+
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -35,7 +35,7 @@ export default function Checkoutpage() {
     if (paymentMethod == "cash") {
       try {
       const response = await CheckoutPayment(CardId as string , values )
-      console.log(response , "from checkout");
+      
       
       if (response?.data?.status === "success") {
         router.push("/")
@@ -55,7 +55,7 @@ export default function Checkoutpage() {
     }else if (paymentMethod == "online") {
         try {
         const response = await CheckoutOnlinePayment(CardId as string , values )
-        console.log(response , "from online");
+        
         
         if (response?.data?.status === "success") {
         window.location.href = response?.data?.session?.url
@@ -75,7 +75,7 @@ export default function Checkoutpage() {
   return (
     <>
       <div className="container mx-auto  w-[85%] ">
-        <div className=" pt-25 pb-4 flex justify-center items-center ">
+        <div className=" h-screen pb-4 flex justify-center items-center ">
           <div className="form-box w-200 border border-gray-400 ">
             <form onSubmit={handleSubmit(onSubmit)} className="form">
               <span className="title Asimovian text-[#13bfe3] ">CheckOut Payment</span>

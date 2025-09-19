@@ -21,7 +21,7 @@ export default function Registerpage() {
     formState: { errors },
   } = useForm<inputs>();
   async function  onSubmit(values: inputs) {
-    console.log(values);
+    
     setIsLoading(true)
     try {
       const response = await axios.post("https://ecommerce.routemisr.com/api/v1/auth/signup" , values )

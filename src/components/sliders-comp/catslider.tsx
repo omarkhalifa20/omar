@@ -1,14 +1,13 @@
-import { ShoppingBag } from 'lucide-react';
+
 import { getCat } from '@/actions/categories.action'
-import axios from 'axios'
+
 
 import React from 'react'
 import Catslidercomp from './Catslidercomp';
 
 export default async function Catslider() {
     const response = await getCat()
-    console.log(response?.data);
-    
+   
   return (
     <>
     <div className='container mx-auto  w-[95%] '>

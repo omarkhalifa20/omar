@@ -4,7 +4,7 @@ import React from 'react'
 
 export default async function Products() {
     const response = await getProducts();
-    console.log(response?.data);
+    
   return (
     <>
     <div className='container mx-auto   w-[85%] '>

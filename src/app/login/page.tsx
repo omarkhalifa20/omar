@@ -2,10 +2,10 @@
 import { useForm } from 'react-hook-form'
 import Link from 'next/link'
 import React, { useState } from 'react'
-import { useRouter, useSearchParams } from 'next/navigation'
-import axios from 'axios'
+import { useSearchParams } from 'next/navigation'
+
 import { signIn } from 'next-auth/react'
-import { sign } from 'crypto'
+
 import { useCart } from '../context/CartContext'
 import toast from 'react-hot-toast'
 import { useWishlist } from '../context/WishlistContext'
@@ -29,7 +29,7 @@ export default function Loginpage() {
     formState: { errors },
   } = useForm<inputs>();
   async function  onSubmit(values: inputs) {
-    console.log(values , "from login");
+    
     setIsLoading(true)
     try {
       const callbackUrl = searchParams.get("callbackUrl") ?? "/";
@@ -44,7 +44,7 @@ export default function Loginpage() {
         
         toast.error('Invalid email or password!')}
         setIsLoading(false)
-      console.log(response);
+      
       
     } catch (error) {
       console.log(error);

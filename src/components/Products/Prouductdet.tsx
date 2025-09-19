@@ -7,7 +7,7 @@ import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 import { FreeMode, Navigation, Thumbs  } from 'swiper/modules'
-import { ProductDet, Productsmod } from '@/app/types/product.moudle';
+import { ProductDet } from '@/app/types/product.moudle';
 import Image from 'next/image';
 import { Heart, ShoppingBag } from 'lucide-react';
 import { useCart } from '@/app/context/CartContext';
@@ -28,7 +28,7 @@ const {getWishlistDetails} =useWishlist()
   async function handleAddToCart(productId : string) {
     if (session?.status == "authenticated") {
      const response = await AddUsercart(productId); 
-    console.log(response);
+    
     toast.success('Successfully Added To Cart!')
     await getCartDetails() 
     } else {
@@ -40,7 +40,7 @@ const {getWishlistDetails} =useWishlist()
   async function handleAddToWishlist(productId : string) {
     if (session?.status == "authenticated") {
       const response = await AddUserWishlist(productId); 
-      console.log(response);
+      ;
       toast.success('Successfully Added To Wishlist!')
       getWishlistDetails()
      } else {

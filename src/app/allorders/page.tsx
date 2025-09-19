@@ -1,12 +1,11 @@
 
-import { log } from 'console'
 import { getServerSession } from 'next-auth'
 import React from 'react'
 import { options } from '../api/auth/[...nextauth]/route'
 
 export default async function allorderpage() {
   const session = await getServerSession(options)
-  log(session);
+  
   return (
     <>
     <h2 className='text-center relative pt-[85px] text-head font-medium Asimovian text-[#13bfe3] text-[30px] mb-20  uppercase'>Congratulations!</h2>

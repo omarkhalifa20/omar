@@ -1,6 +1,6 @@
 "use client"
 import { Brandsmod } from '@/app/types/product.moudle'
-import { Eye, Heart, ShoppingBag } from 'lucide-react'
+import { Eye } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'

@@ -4,7 +4,7 @@ import React from 'react'
 
 export default async function categorypage() {
     const response = await getCat()
-    console.log(response?.data);
+   
     
   return (
     <>

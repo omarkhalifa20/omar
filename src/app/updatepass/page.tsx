@@ -3,20 +3,14 @@ import { useForm } from 'react-hook-form'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import axios from 'axios'
-import { signIn } from 'next-auth/react'
-import { sign } from 'crypto'
-import { useCart } from '../context/CartContext'
+
 import toast from 'react-hot-toast'
-import { useWishlist } from '../context/WishlistContext'
+
 import { RestPass } from '@/actions/forgetpass.action'
 
 
 export default function Updatepasspage() {
   const [isLoading, setIsLoading] = useState(false)
-  const {getCartDetails} =useCart()
-  const {getWishlistDetails} =useWishlist()
-  const searchParams = useSearchParams()
   const router = useRouter()
   
   useEffect(() => {
@@ -39,7 +33,7 @@ export default function Updatepasspage() {
   async function  onSubmit(values: inputs) {
     setIsLoading(true)
     const response = await RestPass({email:values.email , newPassword:values.password})
-    console.log(response);
+    
     if (response?.data?.token) {
       toast.success("Password Updated !")
       localStorage.removeItem("resetCode")

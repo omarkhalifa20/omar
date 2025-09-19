@@ -5,7 +5,7 @@ export default function Footermain() {
     <>
     
     <footer className="footer  text-center border border-t-[#13bfe3] footer-horizontal footer-center bg-gray-200 text-primary-content p-5">
-  <aside className='flex flex-row  md:flex-col items-center'>
+  <aside className='flex flex-row justify-around sm:flex-col  md:flex-col items-center'>
     <div>
       <img className='w-15 md:w-20 mb-4' src={logo1.src} alt="" />
     </div>

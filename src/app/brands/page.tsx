@@ -1,11 +1,10 @@
 import { getBrands } from '@/actions/products.action';
 import Brandscomp from '@/components/brands/Brandscomp';
-import { log } from 'console';
 import React from 'react'
 
 export default async function brandspage() {
     const response = await getBrands();
-    console.log(response?.data);
+    
     
   return (
     <>

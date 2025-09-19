@@ -10,24 +10,22 @@ import {
 } from "@/components/ui/popover"
 import {
     NavigationMenu,
-    NavigationMenuContent,
-    NavigationMenuIndicator,
+  
     NavigationMenuItem,
     NavigationMenuLink,
     NavigationMenuList,
-    NavigationMenuTrigger,
-    NavigationMenuViewport,
+   
   } from "@/components/ui/navigation-menu"
   import {
     Sheet,
     SheetClose,
     SheetContent,
-    SheetDescription,
+    
     SheetHeader,
     SheetTitle,
     SheetTrigger,
   } from "@/components/ui/sheet"
-import { CircleUserRound, Heart, IndentDecrease  , KeyRound, LogIn, LogOut, Menu, ShoppingCart, UserRound } from 'lucide-react'
+import { CircleUserRound, Heart, Menu, ShoppingCart, UserRound } from 'lucide-react'
 import { signOut, useSession } from 'next-auth/react'
 import { Badge } from '../ui/badge'
 import { useCart } from '@/app/context/CartContext'
@@ -47,7 +45,7 @@ export default function Navbarmain() {
   const session = useSession()
   useEffect(() => {
    if (session?.data?.user) {
-     console.log("User:", session.data.user);
+     
 
    }
  }, [session]);

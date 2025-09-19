@@ -1,17 +1,17 @@
 "use client"
-import React, { useState } from 'react'
-import { Swiper, SwiperSlide } from 'swiper/react';
-import type { Swiper as SwiperType } from "swiper";
+import React from 'react'
+
+
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
-import { FreeMode, Navigation, Thumbs  } from 'swiper/modules'
+
 import { Brandsmod} from '@/app/types/product.moudle';
 import Image from 'next/image';
-import { Heart, ShoppingBag } from 'lucide-react';
+
 export default function Brandsdetcomp({brand}: {brand: Brandsmod}) {
-    const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
+   
   return (
     <>
     <div className='container mx-auto pb-20   w-[90%] '>

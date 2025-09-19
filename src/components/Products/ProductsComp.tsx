@@ -2,8 +2,8 @@
 import { Productsmod } from '@/app/types/product.moudle'
 import { StarRating } from 'react-flexible-star-rating';
 import Image from 'next/image'
-import React, { useRef } from 'react'
-import { Eye, Fullscreen, Heart, ShoppingBag, Warehouse } from 'lucide-react';
+import React  from 'react'
+import { Eye, Heart, ShoppingBag, Warehouse } from 'lucide-react';
 import Link from 'next/link';
 import { useCart } from '@/app/context/CartContext';
 import { AddUsercart } from '@/actions/cart.action';
@@ -19,12 +19,11 @@ export default function ProductsComp({products} : {products : Productsmod[]}) {
 const session = useSession()
 const {getCartDetails} =useCart()
 const {wishlistDetails,getWishlistDetails} =useWishlist()
-console.log(wishlistDetails);
+
 
 async function handleAddToCart(productId : string) {
   if (session?.status == "authenticated") {
    const response = await AddUsercart(productId); 
-  console.log(response);
   toast.success('Successfully Added To Cart!')
   await getCartDetails() 
   } else {
@@ -36,7 +35,6 @@ async function handleAddToCart(productId : string) {
 async function handleAddToWishlist(productId : string) {
   if (session?.status == "authenticated") {
     const response = await AddUserWishlist(productId); 
-    console.log(response);
     toast.success('Successfully Added To Wishlist!')
     getWishlistDetails()
    } else {

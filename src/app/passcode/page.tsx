@@ -2,20 +2,18 @@
 import { useForm } from 'react-hook-form'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
-import { useRouter, useSearchParams } from 'next/navigation'
-import axios from 'axios'
+import { useRouter } from 'next/navigation'
 
-import { useCart } from '../context/CartContext'
+
+
 import toast from 'react-hot-toast'
-import { useWishlist } from '../context/WishlistContext'
-import { forgetpass, Passcode } from '@/actions/forgetpass.action'
+
+import { Passcode } from '@/actions/forgetpass.action'
 
 
 export default function Passcodepage() {
   const [isLoading, setIsLoading] = useState(false)
-  const {getCartDetails} =useCart()
-  const {getWishlistDetails} =useWishlist()
-  const searchParams = useSearchParams()
+  
   const router = useRouter();
  
   useEffect(() => {
@@ -41,7 +39,7 @@ export default function Passcodepage() {
     try {
       const response = await Passcode(values.code)
       setIsLoading(false)
-      console.log(response);
+     
       if (response?.data?.status == "Success") {
         toast.success("Valid Code !")
         router.push("/updatepass")
