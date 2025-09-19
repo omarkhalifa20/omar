@@ -11,7 +11,7 @@ import { useWishlist } from '../context/WishlistContext'
 import { forgetpass, Passcode } from '@/actions/forgetpass.action'
 
 
-export default function passcodepage() {
+export default function Passcodepage() {
   const [isLoading, setIsLoading] = useState(false)
   const {getCartDetails} =useCart()
   const {getWishlistDetails} =useWishlist()
