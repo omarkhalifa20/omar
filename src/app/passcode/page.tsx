@@ -1,26 +1,33 @@
 "use client"
 import { useForm } from 'react-hook-form'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import axios from 'axios'
-import { signIn } from 'next-auth/react'
-import { sign } from 'crypto'
+
 import { useCart } from '../context/CartContext'
 import toast from 'react-hot-toast'
 import { useWishlist } from '../context/WishlistContext'
+import { forgetpass, Passcode } from '@/actions/forgetpass.action'
 
 
-export default function Loginpage() {
+export default function passcodepage() {
   const [isLoading, setIsLoading] = useState(false)
   const {getCartDetails} =useCart()
   const {getWishlistDetails} =useWishlist()
   const searchParams = useSearchParams()
-  
+  const router = useRouter();
+ 
+  useEffect(() => {
+    const email = localStorage.getItem("resetEmail"); 
+      if (!email) {
+        router.push("/");
+      }
+    }, [router]);
   interface inputs {
     
-    email: string;
-    password: string;
+    code: string;
+    
    
   }
   const {
@@ -29,22 +36,25 @@ export default function Loginpage() {
     formState: { errors },
   } = useForm<inputs>();
   async function  onSubmit(values: inputs) {
-    console.log(values , "from login");
+    
     setIsLoading(true)
     try {
-      const callbackUrl = searchParams.get("callbackUrl") ?? "/";
-      const response = await signIn("credentials" , {redirect:false , email:values.email, password:values.password , callbackUrl })
-      if (response?.ok) {
-        window.location.assign(response.url ?? callbackUrl )
-        await getCartDetails()
-        await getWishlistDetails()
-        setIsLoading(false)
-        toast.success('Successfully LogIn!')
-      }else{ 
-        
-        toast.error('Invalid email or password!')}
-        setIsLoading(false)
+      const response = await Passcode(values.code)
+      setIsLoading(false)
       console.log(response);
+      if (response?.data?.status == "Success") {
+        toast.success("Valid Code !")
+        router.push("/updatepass")
+        setIsLoading(false)
+        localStorage.removeItem("resetEmail"); 
+        localStorage.setItem("resetCode", values.code);
+      } else {
+        toast.error(response?.message)
+        setIsLoading(false)
+      }
+      
+      
+      
       
     } catch (error) {
       console.log(error);
@@ -58,27 +68,21 @@ export default function Loginpage() {
         <div className=" h-screen flex justify-center items-center ">
           <div className="form-box w-200  ">
             <form onSubmit={handleSubmit(onSubmit)} className="form auth-form">
-              <span className="title Asimovian text-[#13bfe3] ">LogIn</span>
+              <span className="title Asimovian text-[#13bfe3] ">Code Sent</span>
             
               <span className="subtitle">
-                Join us!.
+                Type Code !.
               </span>
               <div className="">
                
                 <input
-                  type="email"
+                  type="text"
                   className="w-[95%] mb-2 p-2 bg-white rounded border border-[#13bfe3]"
-                  placeholder="Email"
-                  {...register("email", { required: 'Email Is Required' })}
+                  placeholder="code"
+                  {...register("code", { required: 'code Is Required' })}
                 />
-                {errors.email && <p className="text-red-500 text-[14px] text-start ms-5 mb-1">{errors.email.message}</p>}
-                <input
-                  type="password"
-                  className="w-[95%] mb-2 p-2 bg-white rounded border border-[#13bfe3]"
-                  placeholder="Password "
-                  {...register("password", { required: 'Password Is Required' })}
-                />
-                {errors.password && <p className="text-red-500 text-[14px] text-start ms-5 mb-1">{errors.password.message}</p>}
+                {errors.code && <p className="text-red-500 text-[14px] text-start ms-5 mb-1">{errors.code.message}</p>}
+              
                
               </div>
               <button className='flex justify-center' type="submit">   
@@ -87,17 +91,14 @@ export default function Loginpage() {
               <div className="loading-bar" />
                <div className="loading-bar" />
                <div className="loading-bar" />
-               </div> : "LogIn"}
+               </div> : "Rest"}
               
   </button>
               
             </form>
             <div className="form-section">
-            <p className='mb-1'>
-               <Link href="/forgetpass">Forget Password?</Link>{" "}
-              </p>
               <p>
-                Have an account? <Link href="/register">Register</Link>{" "}
+                Back To <Link href="/forgetpass">Forget Password?</Link> 
               </p>
             </div>
           </div>

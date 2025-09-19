@@ -34,14 +34,15 @@ export default function Registerpage() {
       if (axios.isAxiosError(error)) {
         console.log(error.response?.data.message);
         setErrorMessage(error.response?.data.message)
-    }
+        setIsLoading(false)
+          }
     
   }
  }
   return (
     <>
       <div className="container mx-auto  w-[85%] ">
-        <div className=" pt-25 pb-4 flex justify-center items-center ">
+        <div className=" h-screen flex justify-center items-center ">
           <div className="form-box w-200  ">
             <form onSubmit={handleSubmit(onSubmit)} className="form">
               <span className="title Asimovian text-[#13bfe3] ">Register</span>
@@ -86,7 +87,7 @@ export default function Registerpage() {
                 />
                 {errors.phone && <p className="text-red-500 text-[14px] text-start ms-5 mb-1 ">{errors.phone.message}</p>}
               </div>
-              <button className="bg-[#13bfe3] rounded-xl cursor-pointer text-white  p-2" type="submit">
+              <button className="bg-[#13bfe3] rounded-xl flex justify-center items-center cursor-pointer text-white  p-2" type="submit">
               { isLoading ? <div className="loading-wave">
               <div className="loading-bar" />
               <div className="loading-bar" />
