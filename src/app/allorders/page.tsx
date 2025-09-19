@@ -12,7 +12,7 @@ export default async function allorderpage() {
 
     
     <h2 className='text-center relative pt-[85px] text-head font-medium Asimovian text-[#13bfe3] text-[30px] mb-20  uppercase'>Congratulations!</h2>
-    <div className='min-h-[50.0285vh] md:min-h-[44vh]'>
+    <div className='min-h-[53.4vh] md:min-h-[44vh]'>
 
     
     <div className='flex justify-center items-center  '>
